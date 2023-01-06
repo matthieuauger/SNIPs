@@ -49,7 +49,7 @@ Subscriptions are coupled with connections. If a connection is closed, all subsc
 * [Synchronizing](#synchronizing)
 
 #### newHeads
-Fires a notification each time a new header is appended to the chain, including chain reorganizations. Users can use the bloom filter to determine if the block contains logs that are interested to them.
+Fires a notification each time a new header is appended to the chain, including chain reorganizations.
 
 In case of a chain reorganization the subscription will emit all new headers for the new chain. Therefore the subscription can emit multiple headers on the same height.
 
@@ -65,20 +65,53 @@ In case of a chain reorganization the subscription will emit all new headers for
   "method": "starknet_subscription",
   "params": {
     "result": {
-      "difficulty": "0x15d9223a23aa",
-      "extraData": "0xd983010305844765746887676f312e342e328777696e646f7773",
-      "gasLimit": "0x47e7c4",
-      "gasUsed": "0x38658",
-      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-      "miner": "0xf8b483dba2c3b7176a3da549ad41a48bb3121069",
-      "nonce": "0x084149998194cc5f",
-      "number": "0x1348c9",
-      "parentHash": "0x7736fab79e05dc611604d22470dadad26f56fe494421b5b333de816ce1f25701",
-      "receiptRoot": "0x2fab35823ad00c7bb388595cb46652fe7886e00660a01e867824d3dceb1c8d36",
-      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-      "stateRoot": "0xb3346685172db67de536d8765c43c31009d0eb3bd9c501c9be3229203f15f378",
-      "timestamp": "0x56ffeff8",
-      "transactionsRoot": "0x0167ffa60e3ebc0b080cdb95f7c0087dd6c0e61413140e39d94d3468d7c9689f"
+        "status": "ACCEPTED_ON_L1",
+        "block_hash": "0x0",
+        "parent_hash": "0x1",
+        "block_number": 0,
+        "new_root": "0x2",
+        "timestamp": 1,
+        "sequencer_address": "0x3",
+        "transactions": [
+            {
+                "type": "DECLARE",
+                "transaction_hash": "0x4",
+                "max_fee": "0x5",
+                "version": "0x6",
+                "signature": [
+                    "0x7"
+                ],
+                "nonce": "0x8",
+                "class_hash": "0x9",
+                "sender_address": "0xa"
+            },
+            {
+                "type": "INVOKE",
+                "transaction_hash": "0x4",
+                "max_fee": "0x5",
+                "version": "0x6",
+                "signature": [
+                    "0x7"
+                ],
+                "nonce": "0x8",
+                "contract_address": "0xb",
+                "entry_point_selector": "0xc",
+                "calldata": [
+                    "0xd"
+                ]
+            },
+            {
+                "type": "DEPLOY",
+                "transaction_hash": "0xe",
+                "version": "0x1",
+                "contract_address": "0xf",
+                "contract_address_salt": "0xee",
+                "class_hash": "0x10",
+                "constructor_calldata": [
+                    "0x11"
+                ]
+            }
+        ]
     },
     "subscription": "0x9ce59a13059e417087c02d3236a0b1cc"
   }
@@ -148,7 +181,7 @@ none
 
 ## Rationale
 
-The `starknet_subscribe` method is based on the `eth_subscribe` method used in the Besu JSON-RPC specification, which has proven to be a reliable and efficient way to subscribe to blockchain events. By following this established standard, we can ensure interoperability with other Ethereum-based clients.
+The `starknet_subscribe` method is based on the `eth_subscribe` method used in the Besu and Geth JSON-RPC specifications, which has proven to be a reliable and efficient way to subscribe to blockchain events. By following this established standard, we can ensure homogeneity with other Ethereum-based clients.
 
 ## Backwards Compatibility
 
