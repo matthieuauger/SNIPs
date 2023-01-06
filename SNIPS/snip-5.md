@@ -54,7 +54,8 @@ Fires a notification each time a new header is appended to the chain, including 
 In case of a chain reorganization the subscription will emit all new headers for the new chain. Therefore the subscription can emit multiple headers on the same height.
 
 ##### Example
-```
+
+```json
 {"id": 1, "method": "starknet_subscribe", "params": ["newHeads"]}
 ```
 
@@ -96,6 +97,7 @@ In case of a chain reorganization previous sent logs that are on the old chain w
 
 
 ### Example
+
 ```json
 {"id": 1, "method": "starknet_subscribe", "params": ["logs", {"address": "0x8320fe7702b96808f7bbc0d4a888ed1468216cfd", "topics": ["0xd78a0cb8bb633d06981248b816e7bd33c2a35a6089241d099fa519e361cab902"]}]}
 ```
